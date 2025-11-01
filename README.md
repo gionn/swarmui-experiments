@@ -12,16 +12,31 @@ curl https://raw.githubusercontent.com/gionn/swarmui-experiments/refs/heads/mast
 ```
 
 ## What the Script Does
-1. Installs the .NET SDK 8.0 if not present
-2. Installs Git and Python3-pip
-3. Installs NVIDIA CUDA Toolkit
-4. Clones the SwarmUI repository to `~/work` and updates it if already present
-5. Launches SwarmUI with default settings
 
-## Troubleshooting
+- Installs the .NET SDK 8.0 if not present
+- Installs Git and Python requirements
+- Installs NVIDIA CUDA Toolkit
+- Clones the SwarmUI repository to `~/work` and updates it if already present
+- Launches SwarmUI with default settings
 
-- If you encounter issues with CUDA, verify your GPU is supported and drivers are installed
-- For .NET SDK issues, see [Microsoft's documentation](https://learn.microsoft.com/en-us/dotnet/core/install/linux)
+## Google Cloud
+
+Create a Google Cloud Compute Engine instance with an NVIDIA T4 GPU:
+
+- Create Instance
+- Region: us-central1 (or any other us based region for cheapest pricing)
+- Select GPUs, Nvidia T4, 1 GPU (16GB memory)
+- Machine type n1-standard-2 (8GB memory are recommended)
+- OS Debian 12
+
+To configure your ssh key for remote access, go to Settings > Metadata > SSH
+Keys.
+
+When connecting make sure to enable port-forwarding:
+
+```sh
+ssh -L 7801:localhost:7801 your-username@your-instance-ip
+```
 
 ## Resources
 
